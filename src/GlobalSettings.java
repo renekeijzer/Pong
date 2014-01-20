@@ -1,17 +1,14 @@
 
 public interface GlobalSettings {
-	static int BlockWidth = 32;
-	static int BlockHeight = 32;
 	static int WindowWidth = 840;
-	static int WindowHeight = 840;
-	static int PlayerWidth = 32;
-	static int PlayerHeight = 64;
+	static int WindowHeight = 640;
+	static int PlayerWidth = 16;
+	static int PlayerHeight = 128;
 	
-	static float gravity = 0.3f;
-	static float maxBlockVelocity = 15;
 	static float maxPlayerVelocity = 15;
+	static float minPlayerVelocity = -15;
 	
-	static String[] strTypes = new String[] { "Air", "Solid", "Lava", "Water", "Sand",
-			"Gravel", "Spikes", "Wood", "Stone", "Ice", "Mines", "Bombs",
-			"Glass", };
+	static float maxBallVelocity = 3;
+	static float minBallVelocity = -3;
+
 }

@@ -1,16 +1,17 @@
 import static org.lwjgl.opengl.GL11.*;
 
-import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
-
 import org.lwjgl.opengl.Display;
+import org.lwjgl.util.vector.Vector2f;
 
 import Screens.GameWindow;
 import Screens.Window;
+import Shapes.Rectangle;
 
 
 public class Game1 extends Game implements GlobalSettings{
-
+	private Field field;
+	public Player Player1, Player2;
+	public Ball ball;
 	public Game1()
 	{
 		do
@@ -19,9 +20,11 @@ public class Game1 extends Game implements GlobalSettings{
 			
 			for(GameComponent Component : Components.getComponents())
 			{
+				
 				Component.Update();
 				Component.Draw();
 			}
+			field.Update();
 			Display.update();
 		}
 		while(!Display.isCloseRequested());
@@ -42,7 +45,8 @@ public class Game1 extends Game implements GlobalSettings{
 
 	@Override
 	public void LoadContent() {
-
+		field = new Field();
+		
 	}
 
 }

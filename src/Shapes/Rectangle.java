@@ -30,10 +30,13 @@ public class Rectangle implements Shape {
 
 	@Override
 	public boolean intersect(Shape a) {
-		if (this.Position.y + this.Height > a.getPosition().y
+		if ((this.Position.y + this.Height > a.getPosition().y
 				|| this.Position.y > a.getPosition().y + a.getHeight()
-				&& this.Position.x + this.Height > a.getPosition().x
-				|| this.Position.x > a.getPosition().x + a.getHeight()) {
+				)&&( this.Position.x + this.Height > a.getPosition().x
+				|| this.Position.x > a.getPosition().x + a.getHeight())) {
+
+			System.out.println(this.Position.y + this.Height + " > " +  a.getPosition().y + " of "+ this.Position.y + " > " +  a.getPosition().y + a.getHeight());
+			System.out.println(this.Position.x + this.Height + " > " +  a.getPosition().x + " of "+ this.Position.x + " > " + a.getPosition().x + a.getHeight());
 			return true;
 		}
 		return false;
