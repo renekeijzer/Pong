@@ -30,16 +30,32 @@ public class Rectangle implements Shape {
 
 	@Override
 	public boolean intersect(Shape a) {
-		if ((this.Position.y + this.Height > a.getPosition().y
-				|| this.Position.y > a.getPosition().y + a.getHeight()
-				)&&( this.Position.x + this.Height > a.getPosition().x
-				|| this.Position.x > a.getPosition().x + a.getHeight())) {
-
-			System.out.println(this.Position.y + this.Height + " > " +  a.getPosition().y + " of "+ this.Position.y + " > " +  a.getPosition().y + a.getHeight());
-			System.out.println(this.Position.x + this.Height + " > " +  a.getPosition().x + " of "+ this.Position.x + " > " + a.getPosition().x + a.getHeight());
+	
+		if(this.Position.x + this.getWidth() > a.getPosition().x &&
+			this.Position.x < a.getPosition().x + a.getWidth() &&
+			this.Position.y > a.getPosition().y &&	
+			this.Position.y < a.getPosition().y + a.getHeight())
+			
+		{
+			System.out.println(this.Position.x + this.getWidth() +" > " + a.getPosition().x + " - " + this.Position.x + " < " + a.getPosition().x + a.getWidth());
+			System.out.println(this.Position.y + " > " + a.getPosition().y + " - " + this.Position.y + " < " + a.getPosition().y + a.getHeight());
+			
 			return true;
 		}
+		
 		return false;
+		
+//		if ((this.Position.y + this.Height > a.getPosition().y //positie + height dus verticale collision
+//				|| this.Position.y > a.getPosition().y + a.getHeight()) 
+//				&& (this.Position.x + this.Width > a.getPosition().x
+//				|| this.Position.x > a.getPosition().x + a.getWidth())) {
+//			System.out.println(this);
+//			System.out.println((Rectangle)a);
+//			System.out.println(this.Position.y + this.Height + " > " +  a.getPosition().y + " of "+ this.Position.y + " > " +  a.getPosition().y + a.getHeight());
+//			System.out.println(this.Position.x + this.Width + " > " +  a.getPosition().x + " of "+ this.Position.x + " > " + a.getPosition().x + a.getWidth());
+//			return true;
+//		}
+//		return false;
 	}
 
 
