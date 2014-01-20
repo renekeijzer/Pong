@@ -53,19 +53,19 @@ public class Ball extends MovableGameComponent{
 	public void Update() {
 		if(this.Velocity.x < 0 && !(this.Velocity.x < minBallVelocity))
 		{
-			Velocity.x -=0.3f;
+			Velocity.x -=0.001f;
 		}
 		if(this.Velocity.y < 0 && !(this.Velocity.y < minBallVelocity))
 		{
-			Velocity.y -=0.3f;
+			Velocity.y -=0.001f;
 		}
 		if(this.Velocity.x > 0 && (this.Velocity.x < maxBallVelocity))
 		{
-			Velocity.x +=0.3f;
+			Velocity.x +=0.001f;
 		}
 		if(this.Velocity.y > 0 && (this.Velocity.x < maxBallVelocity))
 		{
-			Velocity.y +=0.3f;
+			Velocity.y +=0.001f;
 		}
 		
 		if(Position.y+rect.getHeight() >= WindowHeight)

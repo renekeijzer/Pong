@@ -8,7 +8,7 @@ import Shapes.Rectangle;
 public class Field extends GameComponent{
 
 	private Player Player1, Player2;
-	private Ball ball;
+	private Ball tmpball;
 	private ArrayList<Ball> BallList;
 	
 	public Field()
@@ -17,17 +17,26 @@ public class Field extends GameComponent{
 		Player1 = new Player(new Rectangle(new Vector2f(20, 50), PlayerWidth, PlayerHeight), "wasd");
 		Player2 = new Player(new Rectangle(new Vector2f(800, 50), PlayerWidth, PlayerHeight), "arrows");
 		
-		ball = new Ball(
-				new Rectangle(
-						new Vector2f(400,200), 
-						20, 
-						20
-						)
-				);
+		for(int i = 0; i < 15; i++)
+		{
 
+			tmpball = new Ball(
+					new Rectangle(
+							new Vector2f(400,200), 
+							20, 
+							20
+							)
+					);
+			Game.Components.add(tmpball);
+			BallList.add(tmpball);
+			
+		}
+		
 		Game.Components.add(Player1);
 		Game.Components.add(Player2);
-		Game.Components.add(ball);
+		//Game.Components.add(ball);
+		
+		//BallList.add(ball);
 		
 	}
 	@Override
@@ -45,6 +54,7 @@ public class Field extends GameComponent{
 //			tmpVel.x = tmpVel.x * -1;
 //			ball.setVelocity(tmpVel);
 //		}
+		for(Ball ball : BallList){
 		
 		if(ball.intersects(Player1))
 		{
@@ -59,7 +69,7 @@ public class Field extends GameComponent{
 			tmpVel.x = tmpVel.x * -1;
 			ball.setVelocity(tmpVel);
 		}
-		
+		}
 	}
 
 }
