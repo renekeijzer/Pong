@@ -19,10 +19,12 @@ public class Player extends MovableGameComponent{
 	private String playerIdentity;
 	private Vector2f Position;
 	private float Velocity = 0;
+	private int score;
 
 	
 	public Player(Rectangle rectangle, String id)
 	{
+		score = 0;
 		rect = rectangle;
 		this.Position = rect.getPosition();
 		this.playerIdentity = id;
@@ -114,6 +116,14 @@ public class Player extends MovableGameComponent{
 	@Override
 	public int getWidth() {
 		return rect.getWidth();
+	}
+	
+	public void incrementScore(){
+		score++;
+	}
+	
+	public int getScore(){
+		return score;
 	}
 
 }

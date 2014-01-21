@@ -12,6 +12,16 @@ public abstract class Game {
 	
 	public static class Components
 	{
+		private static ArrayList<GameComponent> RemoveComponents;
+		
+		public static ArrayList<GameComponent> getRemoveComponents() {
+			if(RemoveComponents == null)
+			{
+				RemoveComponents = new ArrayList<GameComponent>();
+			}
+			return RemoveComponents;
+		}
+		
 		private static ArrayList<GameComponent> Components;
 		
 		public static ArrayList<GameComponent> getComponents()		{return Components;}
@@ -27,7 +37,11 @@ public abstract class Game {
 		
 		public static void remove(GameComponent comp)
 		{
-			Components.remove(comp);
+			if(RemoveComponents == null)
+			{
+				RemoveComponents = new ArrayList<GameComponent>();
+			}
+			RemoveComponents.add(comp);
 		}
 		
 	}

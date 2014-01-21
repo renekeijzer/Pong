@@ -24,6 +24,10 @@ public class Game1 extends Game implements GlobalSettings{
 				Component.Update();
 				Component.Draw();
 			}
+			for(GameComponent Component : Components.getRemoveComponents()){
+				Components.getComponents().remove(Component);
+			}
+			Components.getRemoveComponents().clear();
 			field.Update();
 			Display.update();
 		}

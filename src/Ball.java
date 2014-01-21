@@ -7,6 +7,7 @@ import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glVertex2f;
 
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.Color;
 
@@ -17,16 +18,19 @@ public class Ball extends MovableGameComponent{
 	
 
 	private Vector2f Position, Velocity;
+	private Color myColor;
 	
 	public void setPostition(Vector2f Position)		{	this.Position = Position;		}
 	public void setVelocity(Vector2f Velocity)		{	this.Velocity = Velocity;		}
 	public void setVerticalVelocity(float i) 		{	this.Velocity.y = i;		}
 	public void setHorizontalVelocity(float i) 		{	this.Velocity.x = i;		}
+	public void setColor(Color c)					{	this.myColor = c; 			}
 	
 	public Vector2f getVelocity()					{	return this.Velocity;		}
 	
 	public Ball(Rectangle rectangle)
 	{	
+		myColor = Color.red;
 		rect = rectangle;
 		Velocity = new Vector2f(0,0);
 		this.Position = rect.getPosition();
@@ -93,8 +97,6 @@ public class Ball extends MovableGameComponent{
 		}
 		
 		
-		
-		
 		this.Position.x += this.Velocity.x;
 		this.Position.y += this.Velocity.y;
 		rect.setPosition(Position);
@@ -104,7 +106,7 @@ public class Ball extends MovableGameComponent{
 	public void Draw() {
 		Color.white.bind();
 		glBegin(GL_QUADS);
-			glColor3f(0.5f, 0.5f, 1.0f);
+			GL11.glColor3ub((byte)myColor.getRed(), (byte)myColor.getGreen(), (byte)myColor.getBlue());
 			glVertex2f(Position.x, Position.y);
 			glVertex2f(Position.x, Position.y + rect.getHeight());
 			glVertex2f(Position.x + rect.getWidth(), Position.y + rect.getHeight());
