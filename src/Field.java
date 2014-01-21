@@ -57,6 +57,11 @@ public class Field extends GameComponent{
 			if(ball.intersects(Player1))
 			{
 				Vector2f tmpVel = ball.getVelocity();
+//				if ((ball.getPosition().y + ball.getHeight() > Player1.getPosition().y) || ((Player1.getPosition().y + Player1.getHeight()) > ball.getPosition().y)){
+//					tmpVel.y = tmpVel.y * -1;		
+//				}else{
+//					tmpVel.x = tmpVel.x * -1;
+//				}
 				tmpVel.x = tmpVel.x * -1;
 				ball.setVelocity(tmpVel);
 				ball.setColor(Ball.getRandomColor());
