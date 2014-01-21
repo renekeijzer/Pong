@@ -7,9 +7,16 @@ import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glVertex2f;
 
+import java.awt.Font;
+import java.io.IOException;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.TrueTypeFont;
+import org.newdawn.slick.openal.Audio;
+import org.newdawn.slick.openal.AudioLoader;
+import org.newdawn.slick.util.ResourceLoader;
 
 import Shapes.Rectangle;
 
@@ -105,7 +112,6 @@ public class Player extends MovableGameComponent{
 	public void Initialize() {
 		glEnable(GL_TEXTURE_2D);
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-
 	}
 
 	@Override

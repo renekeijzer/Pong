@@ -13,6 +13,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.Color;
 
+import Accesoires.Sound;
 import Shapes.Rectangle;
 
 
@@ -78,10 +79,12 @@ public class Ball extends MovableGameComponent{
 		{
 			Velocity.y = Velocity.y * -1;
 			this.setColor(Ball.getRandomColor());
+			Sound.PlayBamf();
 		}
 		if(Position.y <= 0){
 			Velocity.y = Velocity.y * -1;
 			this.setColor(Ball.getRandomColor());
+			Sound.PlayBamf();
 		}
 		if(Velocity.x > maxBallVelocity)
 		{
@@ -136,7 +139,29 @@ public class Ball extends MovableGameComponent{
 	
 	public static Color getRandomColor(){
 		Random r = new Random();
-		return new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255));
+		switch (getFastColorPart()){
+		case (0): return new Color(getvastColorPartValue(), r.nextInt(255), r.nextInt(255));
+		case (1): return new Color(r.nextInt(255),getvastColorPartValue(), r.nextInt(255));
+		default:  return new Color(r.nextInt(255), r.nextInt(255), getvastColorPartValue());
+		}
+	}
+	
+	private static int vastColorPartValue = -1;
+	public static byte getvastColorPartValue(){
+		if (vastColorPartValue == -1){
+			Random r = new Random();
+			vastColorPartValue = r.nextInt(255);
+		}
+		return (byte)vastColorPartValue;
+	}
+	
+	private static int vastColorPart = -1;
+	public static int getFastColorPart(){
+		if (vastColorPart == -1){
+			Random r = new Random();
+			vastColorPart = r.nextInt(2);
+		}
+		return vastColorPart;
 	}
 
 }

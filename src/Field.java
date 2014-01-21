@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
 
+import Accesoires.Sound;
 import Shapes.Rectangle;
 
 
@@ -59,6 +60,7 @@ public class Field extends GameComponent{
 				tmpVel.x = tmpVel.x * -1;
 				ball.setVelocity(tmpVel);
 				ball.setColor(Ball.getRandomColor());
+				Sound.PlayBoop();
 			}
 			if(ball.intersects(Player2))
 			{
@@ -66,6 +68,7 @@ public class Field extends GameComponent{
 				tmpVel.x = tmpVel.x * -1;
 				ball.setVelocity(tmpVel);
 				ball.setColor(Ball.getRandomColor());
+				Sound.PlayBeep();
 			}
 			if(ball.getPosition().x > WindowWidth){
 				Player2.incrementScore();
