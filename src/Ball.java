@@ -32,13 +32,13 @@ public class Ball extends MovableGameComponent{
 		this.Position = rect.getPosition();
 		if(1+(int)(Math.random()*2) == 1)
 		{
-			this.Velocity.x += 1 + (float)(Math.random()*5);
-			this.Velocity.y += 1 + (float)(Math.random()*5);
+			this.Velocity.x += (1 + (float)(Math.random()*10)-5);
+			this.Velocity.y += (1 + (float)(Math.random()*10)-5);
 		}
 			else
 		{	
-				this.Velocity.x -= 1 + (float)(Math.random()*5);
-				this.Velocity.y -= 1 + (float)(Math.random()*5);
+				this.Velocity.x -= (1 + (float)(Math.random()*10)-5);
+				this.Velocity.y -= (1 + (float)(Math.random()*10)-5);
 		}
 	}
 	

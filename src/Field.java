@@ -31,29 +31,22 @@ public class Field extends GameComponent{
 			BallList.add(tmpball);
 			
 		}
+//		tmpball = new Ball(
+//				new Rectangle(
+//						new Vector2f(400,200), 
+//						20, 
+//						20
+//						)
+//				);
+//		Game.Components.add(tmpball);
+//		BallList.add(tmpball);
 		
 		Game.Components.add(Player1);
 		Game.Components.add(Player2);
-		//Game.Components.add(ball);
-		
-		//BallList.add(ball);
 		
 	}
 	@Override
 	public void Update() {
-
-//		if(Player1.intersects(ball))
-//		{
-//			Vector2f tmpVel = ball.getVelocity();
-//			tmpVel.x = tmpVel.x * -1;
-//			ball.setVelocity(tmpVel);
-//		}
-//		if(Player2.intersects(ball))
-//		{
-//			Vector2f tmpVel = ball.getVelocity();
-//			tmpVel.x = tmpVel.x * -1;
-//			ball.setVelocity(tmpVel);
-//		}
 		for(Ball ball : BallList){
 		
 		if(ball.intersects(Player1))
