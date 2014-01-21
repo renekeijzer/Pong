@@ -1,23 +1,19 @@
+import static org.lwjgl.opengl.GL11.GL_BLEND;
 import static org.lwjgl.opengl.GL11.GL_QUADS;
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 import static org.lwjgl.opengl.GL11.glBegin;
 import static org.lwjgl.opengl.GL11.glClearColor;
 import static org.lwjgl.opengl.GL11.glColor3f;
+import static org.lwjgl.opengl.GL11.glDisable;
 import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glVertex2f;
 
-import java.awt.Font;
-import java.io.IOException;
-
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.Color;
-import org.newdawn.slick.TrueTypeFont;
-import org.newdawn.slick.openal.Audio;
-import org.newdawn.slick.openal.AudioLoader;
-import org.newdawn.slick.util.ResourceLoader;
 
+import Accesoires.NumberRenderer;
 import Shapes.Rectangle;
 
 
@@ -27,10 +23,12 @@ public class Player extends MovableGameComponent{
 	private Vector2f Position;
 	private float Velocity = 0;
 	private int score;
+	private NumberRenderer nr;
 
 	
 	public Player(Rectangle rectangle, String id)
 	{
+		nr = new NumberRenderer();
 		score = 0;
 		rect = rectangle;
 		this.Position = rect.getPosition();
@@ -99,13 +97,20 @@ public class Player extends MovableGameComponent{
 	@Override
 	public void Draw() {
 		Color.white.bind();
+		glDisable(GL_BLEND);
 		glBegin(GL_QUADS);
-			glColor3f(0.5f, 0.5f, 1.0f);
+			glColor3f(0.5f, 0.5f, 1);
 			glVertex2f(Position.x, Position.y);
 			glVertex2f(Position.x, Position.y + rect.getHeight());
 			glVertex2f(Position.x + rect.getWidth(), Position.y + rect.getHeight());
 			glVertex2f(Position.x + rect.getWidth(), Position.y);
-		glEnd();
+			if (playerIdentity == "arrows"){
+			nr.Draw(new Vector2f(650, 50), Integer.toString(score), 15);
+			}else if(playerIdentity == "wasd"){
+				nr.Draw(new Vector2f(100, 50), Integer.toString(score), 15);
+			}
+		
+			glEnd();
 	}
 
 	@Override

@@ -10,6 +10,8 @@ public class Sound {
 	private static Audio boop;
 	private static Audio beep;
 	private static Audio bamf;
+	private static Audio balls;
+	
 	
 	public static void PlayBoop(){
 		if (boop == null){
@@ -18,6 +20,12 @@ public class Sound {
 		boop.playAsSoundEffect(1.0f, 2.0f, false);
 	}
 	
+	public static void PlayBalls(){
+		if (balls == null){
+			balls = LoadAudio("Assets\\Balls.wav", "WAV");
+		}
+		balls.playAsSoundEffect(1.0f, 1.0f, false);
+	}
 	public static void PlayBeep(){
 		if (beep == null){
 			beep = LoadAudio("Assets\\Beep.wav", "WAV");

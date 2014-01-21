@@ -37,8 +37,10 @@ public class Game1 extends Game implements GlobalSettings{
 	
 	public void Initialize() {
 		Window window = new GameWindow(WindowWidth, WindowHeight);
+		
 		glEnable(GL_BLEND);
-		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 		glViewport(0,0, Window.getWidth(), Window.getHeight());
 		glMatrixMode(GL_MODELVIEW);
 		glMatrixMode(GL_PROJECTION);
