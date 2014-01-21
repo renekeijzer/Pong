@@ -58,13 +58,14 @@ public class Field extends GameComponent{
 				Vector2f tmpVel = ball.getVelocity();
 				tmpVel.x = tmpVel.x * -1;
 				ball.setVelocity(tmpVel);
-				
+				ball.setColor(Ball.getRandomColor());
 			}
 			if(ball.intersects(Player2))
 			{
 				Vector2f tmpVel = ball.getVelocity();
 				tmpVel.x = tmpVel.x * -1;
 				ball.setVelocity(tmpVel);
+				ball.setColor(Ball.getRandomColor());
 			}
 			if(ball.getPosition().x > WindowWidth){
 				Player2.incrementScore();

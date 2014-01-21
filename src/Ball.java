@@ -7,6 +7,8 @@ import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glVertex2f;
 
+import java.util.Random;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.Color;
@@ -30,7 +32,7 @@ public class Ball extends MovableGameComponent{
 	
 	public Ball(Rectangle rectangle)
 	{	
-		myColor = Color.red;
+		myColor = getRandomColor();
 		rect = rectangle;
 		Velocity = new Vector2f(0,0);
 		this.Position = rect.getPosition();
@@ -75,9 +77,11 @@ public class Ball extends MovableGameComponent{
 		if(Position.y+rect.getHeight() >= WindowHeight)
 		{
 			Velocity.y = Velocity.y * -1;
+			this.setColor(Ball.getRandomColor());
 		}
 		if(Position.y <= 0){
 			Velocity.y = Velocity.y * -1;
+			this.setColor(Ball.getRandomColor());
 		}
 		if(Velocity.x > maxBallVelocity)
 		{
@@ -128,6 +132,11 @@ public class Ball extends MovableGameComponent{
 	@Override
 	public int getWidth() {
 		return rect.getWidth();
+	}
+	
+	public static Color getRandomColor(){
+		Random r = new Random();
+		return new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255));
 	}
 
 }
