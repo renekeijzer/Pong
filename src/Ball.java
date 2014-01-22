@@ -43,16 +43,6 @@ public class Ball extends MovableGameComponent{
 		Velocity.y += (float) Math.random() * 4 + 1;
 		
 		this.Position = rect.getPosition();
-//		if(1+(int)(Math.random()*2) == 1)
-//		{
-//			this.Velocity.x += (3 + (float)(Math.random()*10)-5);
-//			this.Velocity.y += (3 + (float)(Math.random()*10)-5);
-//		}
-//			else
-//		{	
-//				this.Velocity.x -= (3 + (float)(Math.random()*10)-5);
-//				this.Velocity.y -= (3 + (float)(Math.random()*10)-5);
-//		}
 	}
 	
 	private double GenerateRandomDirection(){

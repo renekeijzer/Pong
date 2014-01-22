@@ -1,7 +1,11 @@
 import java.util.ArrayList;
 
+import Screens.State;
+
 public abstract class Game {
 	
+	static State state = State.INTRO;
+	static boolean justStarted = false;
 	public Game() {
 		Initialize();
 		LoadContent();

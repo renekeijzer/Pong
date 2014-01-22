@@ -1,3 +1,5 @@
+import Screens.State;
+
 
 public interface GlobalSettings {
 	static int WindowWidth = 840;
@@ -10,5 +12,6 @@ public interface GlobalSettings {
 	
 	static float maxBallVelocity = 15;
 	static float minBallVelocity = -15;
+	
 
 }

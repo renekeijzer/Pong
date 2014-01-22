@@ -24,10 +24,20 @@ public class Player extends MovableGameComponent{
 	private float Velocity = 0;
 	private int score;
 	private NumberRenderer nr;
-
+	private boolean Manual;
+	
+	public void setPosition(Vector2f pos)	{	this.Position = pos;		}
+	public Vector2f getPosition() 			{	return rect.getPosition();	}
+	public int getHeight() 					{	return rect.getHeight();	}
+	public int getWidth() 					{	return rect.getWidth();		}
+	public int getScore()					{	return score;				}
+	public float getYVelocity()				{	return this.Velocity;		}
+	public void setScore(int i)				{	this.score = i;				}
+	public void setManual(boolean bool)		{	this.Manual = bool;			}
 	
 	public Player(Rectangle rectangle, String id)
 	{
+		this.Manual = false;
 		nr = new NumberRenderer();
 		score = 0;
 		rect = rectangle;
@@ -35,15 +45,17 @@ public class Player extends MovableGameComponent{
 		this.playerIdentity = id;
 	}
 	
+	
 	@Override
-	public Vector2f getPosition() {
-		return rect.getPosition();
+	public void Initialize() {
+		glEnable(GL_TEXTURE_2D);
+		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	}
 
 	@Override
 	public void Update() {
 		
-		
+		if(Manual){
 		if(playerIdentity == "wasd")
 		{
 			
@@ -52,23 +64,23 @@ public class Player extends MovableGameComponent{
 				if (Velocity > minPlayerVelocity) {
 					Velocity -= 0.5f;
 				}
-			}else if(Keyboard.isKeyDown(Keyboard.KEY_S))
-			{
+			}
+			else if(Keyboard.isKeyDown(Keyboard.KEY_S)){
 				if (Velocity < maxPlayerVelocity) {
 					Velocity += 0.5f;
 				}
-			}else
-			{
+			}
+			else{
 				Velocity = 0;
 			}
-		}else if(playerIdentity == "arrows")
-		{
-			if(Keyboard.isKeyDown(Keyboard.KEY_UP))
-			{
+		}
+		else if(playerIdentity == "arrows"){
+			if(Keyboard.isKeyDown(Keyboard.KEY_UP)){
 				if (Velocity > minPlayerVelocity) {
 					Velocity -= 0.5f;
 				}
-			}else if(Keyboard.isKeyDown(Keyboard.KEY_DOWN))
+			}
+			else if(Keyboard.isKeyDown(Keyboard.KEY_DOWN))
 			{
 				if (Velocity < maxPlayerVelocity) {
 					Velocity += 0.5f;
@@ -87,6 +99,7 @@ public class Player extends MovableGameComponent{
 		{
 			Position.y = 0;
 			Velocity = 0;
+		}
 		}
 		
 		this.Position.y += Velocity;
@@ -112,33 +125,10 @@ public class Player extends MovableGameComponent{
 		
 			glEnd();
 	}
-
-	@Override
-	public void Initialize() {
-		glEnable(GL_TEXTURE_2D);
-		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-	}
-
-	@Override
-	public int getHeight() {
-		return rect.getHeight();
-	}
-
-	@Override
-	public int getWidth() {
-		return rect.getWidth();
-	}
-	
 	public void incrementScore(){
 		score++;
 	}
-	
-	public int getScore(){
-		return score;
-	}
-	
-	public float getYVelocity(){
-		return this.Velocity;
-	}
+
+
 
 }
