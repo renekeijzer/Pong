@@ -56,6 +56,7 @@ public class Player extends MovableGameComponent{
 	public void Update() {
 		
 		if(Manual){
+			//Player controls
 		if(playerIdentity == "wasd")
 		{
 			
@@ -109,6 +110,7 @@ public class Player extends MovableGameComponent{
 
 	@Override
 	public void Draw() {
+		//Drawing players
 		Color.white.bind();
 		glDisable(GL_BLEND);
 		glBegin(GL_QUADS);
@@ -118,6 +120,7 @@ public class Player extends MovableGameComponent{
 			glVertex2f(Position.x + rect.getWidth(), Position.y + rect.getHeight());
 			glVertex2f(Position.x + rect.getWidth(), Position.y);
 			if (playerIdentity == "arrows"){
+			//	Drawing score
 			nr.Draw(new Vector2f(650, 50), Integer.toString(score), 15);
 			}else if(playerIdentity == "wasd"){
 				nr.Draw(new Vector2f(100, 50), Integer.toString(score), 15);

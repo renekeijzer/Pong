@@ -21,6 +21,7 @@ public class NumberRenderer {
 		Color.white.bind();
 		glBegin(GL_QUADS);
 		GL11.glColor3f(1,1,1);
+		//Rendering cijferreeks
 		for(char num : Arr)
 		{
 			switch(Character.getNumericValue(num))

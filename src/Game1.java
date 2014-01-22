@@ -55,7 +55,7 @@ public class Game1 extends Game implements GlobalSettings{
 
 	@Override
 	public void LoadContent() {
-		//Nieuwe conten loaden
+		//Nieuwe content loaden
 		field = new Field();
 		Game.Components.add(field);
 	}
