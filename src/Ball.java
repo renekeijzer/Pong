@@ -39,13 +39,17 @@ public class Ball extends MovableGameComponent{
 		//richting en snelheid
 		Velocity = new Vector2f(0,0);
 		double richting = GenerateRandomDirection();
+		System.out.println("new: " + richting);
+		System.out.println("x: " + Math.cos(richting));
+		System.out.println("y: " + Math.sin(richting));
+		System.out.println("xF: " + (float) Math.cos(richting));
+		System.out.println("yF: " + (float) Math.sin(richting));
 		Velocity.x = (float) Math.cos(richting);
 		Velocity.y = (float) Math.sin(richting);
 		
 		//snelheid
-		double speed = (float) Math.random() * 4 + 1;
-		Velocity.x += speed;
-		Velocity.y += speed;
+		float speed = (float) Math.random() * 4 + 1;
+		this.IncrementAllSpeed(speed);
 		
 		//positie
 		this.Position = rect.getPosition();
@@ -91,9 +95,20 @@ public class Ball extends MovableGameComponent{
 	
 	//verhoog alleen de snelheid op de x as
 	public void IncrementXSpeed(float adding){
+		if(this.Velocity.x < 0 && !(this.Velocity.x < minBallVelocity))
+		{
+			Velocity.x -=adding;
+		}
 		if(this.Velocity.x > 0 && (this.Velocity.x < maxBallVelocity))
 		{
 			Velocity.x +=adding;
+		}
+	}
+	
+	public void IncrementYSpeed(float adding){
+		if(this.Velocity.y < 0 && !(this.Velocity.y < minBallVelocity))
+		{
+			Velocity.y -=adding;
 		}
 		if(this.Velocity.y > 0 && (this.Velocity.x < maxBallVelocity))
 		{
