@@ -36,17 +36,33 @@ public class Ball extends MovableGameComponent{
 		myColor = getRandomColor();
 		rect = rectangle;
 		Velocity = new Vector2f(0,0);
+		double richting = GenerateRandomDirection();
+		Velocity.x = (float) Math.cos(richting);
+		Velocity.y = (float) Math.sin(richting);
+		Velocity.x += (float) Math.random() * 4 + 1;
+		Velocity.y += (float) Math.random() * 4 + 1;
+		
 		this.Position = rect.getPosition();
-		if(1+(int)(Math.random()*2) == 1)
-		{
-			this.Velocity.x += (1 + (float)(Math.random()*10)-5);
-			this.Velocity.y += (1 + (float)(Math.random()*10)-5);
+//		if(1+(int)(Math.random()*2) == 1)
+//		{
+//			this.Velocity.x += (3 + (float)(Math.random()*10)-5);
+//			this.Velocity.y += (3 + (float)(Math.random()*10)-5);
+//		}
+//			else
+//		{	
+//				this.Velocity.x -= (3 + (float)(Math.random()*10)-5);
+//				this.Velocity.y -= (3 + (float)(Math.random()*10)-5);
+//		}
+	}
+	
+	private double GenerateRandomDirection(){
+		double richting = Math.random() * 2 * Math.PI;
+		if (richting > (3/8 * Math.PI) && richting < (5/8 * Math.PI)){
+			return GenerateRandomDirection();
+		}else if(richting > (3/8 * Math.PI) + Math.PI && richting < (5/8 * Math.PI) + Math.PI){
+			return GenerateRandomDirection();
 		}
-			else
-		{	
-				this.Velocity.x -= (1 + (float)(Math.random()*10)-5);
-				this.Velocity.y -= (1 + (float)(Math.random()*10)-5);
-		}
+		return richting;
 	}
 	
 	
@@ -55,34 +71,54 @@ public class Ball extends MovableGameComponent{
 	public Vector2f getPosition() {
 		return rect.getPosition();
 	}
-
-	@Override
-	public void Update() {
+	
+	public void IncrementAllSpeed(float adding){
 		if(this.Velocity.x < 0 && !(this.Velocity.x < minBallVelocity))
 		{
-			Velocity.x -=0.001f;
+			Velocity.x -=adding;
 		}
 		if(this.Velocity.y < 0 && !(this.Velocity.y < minBallVelocity))
 		{
-			Velocity.y -=0.001f;
+			Velocity.y -=adding;
 		}
 		if(this.Velocity.x > 0 && (this.Velocity.x < maxBallVelocity))
 		{
-			Velocity.x +=0.001f;
+			Velocity.x +=adding;
 		}
 		if(this.Velocity.y > 0 && (this.Velocity.x < maxBallVelocity))
 		{
-			Velocity.y +=0.001f;
+			Velocity.y +=adding;
 		}
+	}
+	public void IncrementXSpeed(float adding){
+		if(this.Velocity.x > 0 && (this.Velocity.x < maxBallVelocity))
+		{
+			Velocity.x +=adding;
+		}
+		if(this.Velocity.y > 0 && (this.Velocity.x < maxBallVelocity))
+		{
+			Velocity.y +=adding;
+		}
+	}
+
+	@Override
+	public void Update() {
+		IncrementAllSpeed(0.002f);
 		
 		if(Position.y+rect.getHeight() >= WindowHeight)
 		{
-			Velocity.y = Velocity.y * -1;
+			if (Velocity.y > 0){
+				Velocity.y = Velocity.y * -1;
+				IncrementAllSpeed(0.005f);
+			}
 			this.setColor(Ball.getRandomColor());
 			Sound.PlayBamf();
 		}
 		if(Position.y <= 0){
-			Velocity.y = Velocity.y * -1;
+			if (Velocity.y < 0){
+				Velocity.y = Velocity.y * -1;
+				IncrementAllSpeed(0.005f);
+			}
 			this.setColor(Ball.getRandomColor());
 			Sound.PlayBamf();
 		}

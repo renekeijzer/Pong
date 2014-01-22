@@ -136,5 +136,9 @@ public class Player extends MovableGameComponent{
 	public int getScore(){
 		return score;
 	}
+	
+	public float getYVelocity(){
+		return this.Velocity;
+	}
 
 }

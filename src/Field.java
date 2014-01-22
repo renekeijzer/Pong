@@ -43,22 +43,60 @@ public class Field extends GameComponent{
 			Vector2f tmpVel = ball.getVelocity();
 			if(ball.intersects(Player1))
 			{
-			
-//				if ((ball.getPosition().y + ball.getHeight() > Player1.getPosition().y) && ((Player1.getPosition().y + Player1.getHeight()) > ball.getPosition().y)){
-//					tmpVel.y = tmpVel.y * -1;		
-//				}else{
-//					tmpVel.x = tmpVel.x * -1;
-//				}
-				tmpVel.x = tmpVel.x * -1;
+				ball.IncrementAllSpeed(0.006f);
+				ball.IncrementXSpeed(0.004f);
+				System.out.println("Player1: " + Player1.getPosition());
+				System.out.println("Ball: " + ball.getPosition());
+				System.out.println("Ball speed: " + ball.getVelocity());
+				if((ball.getPosition().y + ball.getHeight()) > (Player1.getPosition().y + Player1.getHeight())){
+					System.out.println("van onder");
+					if (tmpVel.y < 0){
+						tmpVel.y = tmpVel.y * -1;
+					}
+					if(tmpVel.y < Player1.getYVelocity()){ tmpVel.y = (float) (Player1.getYVelocity() + 0.1f);}
+				}else if(ball.getPosition().y < Player1.getPosition().y){
+					System.out.println("van boven");
+					if (tmpVel.y > 0){
+						tmpVel.y = tmpVel.y * -1;
+					}
+					if(tmpVel.y > Player1.getYVelocity()){ tmpVel.y = (float) (Player1.getYVelocity() - 0.1f);}
+				}
+				if((ball.getPosition().x + ball.getWidth()) > (Player1.getPosition().x + Player1.getWidth())){
+					System.out.println("van other");
+					if (tmpVel.x < 0){
+						tmpVel.x = tmpVel.x * -1;
+					}
+				}
 				ball.setVelocity(tmpVel);
 				ball.setColor(Ball.getRandomColor());
 				Sound.PlayBoop();
 			}
 			if(ball.intersects(Player2))
 			{
-	
-				
-				tmpVel.x = tmpVel.x * -1;
+				ball.IncrementAllSpeed(0.006f);
+				ball.IncrementXSpeed(0.004f);
+				System.out.println("Player2: " + Player2.getPosition());
+				System.out.println("Ball: " + ball.getPosition());
+				System.out.println("Ball speed: " + ball.getVelocity());
+				if((ball.getPosition().y + ball.getHeight()) > (Player2.getPosition().y + Player2.getHeight())){
+					System.out.println("van onder");
+					if (tmpVel.y < 0){
+						tmpVel.y = tmpVel.y * -1;
+					}
+					if(tmpVel.y < Player2.getYVelocity()){ tmpVel.y = (float) (Player2.getYVelocity() + 0.1f);}
+				}else if(ball.getPosition().y < Player2.getPosition().y){
+					System.out.println("van boven");
+					if (tmpVel.y > 0){
+						tmpVel.y = tmpVel.y * -1;
+					}
+					if(tmpVel.y > Player2.getYVelocity()){ tmpVel.y = (float) (Player2.getYVelocity() - 0.1f);}
+				}
+				if(ball.getPosition().x < Player2.getPosition().x){
+					System.out.println("van other");
+					if (tmpVel.x > 0){
+						tmpVel.x = tmpVel.x * -1;
+					}
+				}
 				ball.setVelocity(tmpVel);
 				ball.setColor(Ball.getRandomColor());
 				Sound.PlayBeep();
@@ -100,17 +138,9 @@ public class Field extends GameComponent{
 			
 			for(int i = 0; i < 5; i++)
 			{
-
-				tmpball = new Ball(
-						new Rectangle(
-								new Vector2f(400,200), 
-								20, 
-								20
-								)
-						);
+				tmpball = new Ball(new Rectangle(new Vector2f(400,200), 20, 20));
 				Game.Components.add(tmpball);
 				BallList.add(tmpball);
-				
 			}
 			
 		}
