@@ -34,17 +34,25 @@ public class Ball extends MovableGameComponent{
 	public Ball(Rectangle rectangle)
 	{	
 		myColor = getRandomColor();
+		//colision
 		rect = rectangle;
+		
+		//richting en snelheid
 		Velocity = new Vector2f(0,0);
 		double richting = GenerateRandomDirection();
 		Velocity.x = (float) Math.cos(richting);
 		Velocity.y = (float) Math.sin(richting);
-		Velocity.x += (float) Math.random() * 4 + 1;
-		Velocity.y += (float) Math.random() * 4 + 1;
 		
+		//snelheid
+		double speed = (float) Math.random() * 4 + 1;
+		Velocity.x += speed;
+		Velocity.y += speed;
+		
+		//positie
 		this.Position = rect.getPosition();
 	}
 	
+	//Genereer een richting waarheen hij moet bewegen
 	private double GenerateRandomDirection(){
 		double richting = Math.random() * 2 * Math.PI;
 		if (richting > (3/8 * Math.PI) && richting < (5/8 * Math.PI)){
@@ -62,6 +70,7 @@ public class Ball extends MovableGameComponent{
 		return rect.getPosition();
 	}
 	
+	//add all speed
 	public void IncrementAllSpeed(float adding){
 		if(this.Velocity.x < 0 && !(this.Velocity.x < minBallVelocity))
 		{
@@ -80,6 +89,8 @@ public class Ball extends MovableGameComponent{
 			Velocity.y +=adding;
 		}
 	}
+	
+	//verhoog alleen de snelheid op de x as
 	public void IncrementXSpeed(float adding){
 		if(this.Velocity.x > 0 && (this.Velocity.x < maxBallVelocity))
 		{
@@ -95,6 +106,7 @@ public class Ball extends MovableGameComponent{
 	public void Update() {
 		IncrementAllSpeed(0.002f);
 		
+		//buiten map -> omkeren
 		if(Position.y+rect.getHeight() >= WindowHeight)
 		{
 			if (Velocity.y > 0){
@@ -112,6 +124,8 @@ public class Ball extends MovableGameComponent{
 			this.setColor(Ball.getRandomColor());
 			Sound.PlayBamf();
 		}
+		
+		//snelheid binnen de perken houden
 		if(Velocity.x > maxBallVelocity)
 		{
 			Velocity.x = maxBallVelocity;
@@ -129,14 +143,14 @@ public class Ball extends MovableGameComponent{
 			Velocity.y = minBallVelocity;
 		}
 		
-		
+		//nieuwe positie
 		this.Position.x += this.Velocity.x;
 		this.Position.y += this.Velocity.y;
 		rect.setPosition(Position);
 	}
 
 	@Override
-	public void Draw() {
+	public void Draw() { //teken de ball
 		Color.white.bind();
 		glBegin(GL_QUADS);
 			GL11.glColor3ub((byte)myColor.getRed(), (byte)myColor.getGreen(), (byte)myColor.getBlue());
@@ -148,7 +162,7 @@ public class Ball extends MovableGameComponent{
 	}
 
 	@Override
-	public void Initialize() {
+	public void Initialize() { //zie hier niet veel nut in
 		glEnable(GL_TEXTURE_2D);
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	}
@@ -163,7 +177,7 @@ public class Ball extends MovableGameComponent{
 		return rect.getWidth();
 	}
 	
-	public static Color getRandomColor(){
+	public static Color getRandomColor(){ //genereer een random color, Rood, Groen, of Bluaw staat vast
 		Random r = new Random();
 		switch (getFastColorPart()){
 		case (0): return new Color(getvastColorPartValue(), r.nextInt(255), r.nextInt(255));
@@ -173,7 +187,7 @@ public class Ball extends MovableGameComponent{
 	}
 	
 	private static int vastColorPartValue = -1;
-	public static byte getvastColorPartValue(){
+	public static byte getvastColorPartValue(){ //vast kleur waarde
 		if (vastColorPartValue == -1){
 			Random r = new Random();
 			vastColorPartValue = r.nextInt(255);
@@ -182,7 +196,7 @@ public class Ball extends MovableGameComponent{
 	}
 	
 	private static int vastColorPart = -1;
-	public static int getFastColorPart(){
+	public static int getFastColorPart(){ //vaste kleur type (Rood, Groen of Blauw)
 		if (vastColorPart == -1){
 			Random r = new Random();
 			vastColorPart = r.nextInt(2);
