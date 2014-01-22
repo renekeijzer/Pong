@@ -39,11 +39,6 @@ public class Ball extends MovableGameComponent{
 		//richting en snelheid
 		Velocity = new Vector2f(0,0);
 		double richting = GenerateRandomDirection();
-		System.out.println("new: " + richting);
-		System.out.println("x: " + Math.cos(richting));
-		System.out.println("y: " + Math.sin(richting));
-		System.out.println("xF: " + (float) Math.cos(richting));
-		System.out.println("yF: " + (float) Math.sin(richting));
 		Velocity.x = (float) Math.cos(richting);
 		Velocity.y = (float) Math.sin(richting);
 		

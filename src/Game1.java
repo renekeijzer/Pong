@@ -23,6 +23,7 @@ public class Game1 extends Game implements GlobalSettings{
 				Component.Update();
 				Component.Draw();
 			}
+			field.Update();
 			//Alle GameComponents weg gooien die weg gegooid moeten worden
 			for(GameComponent Component : Components.getRemoveComponents()){
 				Components.getComponents().remove(Component);
@@ -57,7 +58,6 @@ public class Game1 extends Game implements GlobalSettings{
 	public void LoadContent() {
 		//Nieuwe content loaden
 		field = new Field();
-		Game.Components.add(field);
 	}
 
 }

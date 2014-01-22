@@ -55,13 +55,15 @@ public class Field extends GameComponent {
 			case GAME:
 				if(Game.justStarted)
 				{
+
 					Player1.setManual(true);
 					Player2.setManual(true);
 					Player1.setScore(0);
 					Player2.setScore(0);
+					
 					Game.Components.remove(BallList.get(0));
 					BallList.clear();
-					
+			
 					tmpball = new Ball(new Rectangle(new Vector2f(400, 200), 20, 20));
 					Game.Components.add(tmpball);
 					BallList.add(tmpball);
