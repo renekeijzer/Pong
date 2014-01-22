@@ -1,5 +1,3 @@
-import Screens.State;
-
 
 public interface GlobalSettings {
 	static int WindowWidth = 840;

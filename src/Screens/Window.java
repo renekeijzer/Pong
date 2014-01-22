@@ -13,8 +13,8 @@ public abstract class Window {
 	
 	public Window(int Width,int Height)
 	{
-		this.Width = Width;
-		this.Height = Height;
+		Window.Width = Width;
+		Window.Height = Height;
 		
 		try {
 			Display.setDisplayMode(new DisplayMode(Width, Height));

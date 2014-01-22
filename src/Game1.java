@@ -1,11 +1,9 @@
 import static org.lwjgl.opengl.GL11.*;
 
 import org.lwjgl.opengl.Display;
-import org.lwjgl.util.vector.Vector2f;
 
 import Screens.GameWindow;
 import Screens.Window;
-import Shapes.Rectangle;
 
 
 public class Game1 extends Game implements GlobalSettings{
@@ -16,19 +14,22 @@ public class Game1 extends Game implements GlobalSettings{
 	{
 		do
 		{
+			//Clearing screen each gameloop
 			glClear(GL_COLOR_BUFFER_BIT);
-			
+			//Elke GameComponent updaten en drawen
 			for(GameComponent Component : Components.getComponents())
 			{
 				
 				Component.Update();
 				Component.Draw();
 			}
+			//Alle GameComponents weg gooien die weg gegooid moeten worden
 			for(GameComponent Component : Components.getRemoveComponents()){
 				Components.getComponents().remove(Component);
 			}
+			//Clearing The removed components
 			Components.getRemoveComponents().clear();
-			field.Update();
+			//Updating the display
 			Display.update();
 		}
 		while(!Display.isCloseRequested());
@@ -36,6 +37,8 @@ public class Game1 extends Game implements GlobalSettings{
 	
 	
 	public void Initialize() {
+		//Initialiseren van alle openGL Setting, en initialiseren van een nieuwe window
+		@SuppressWarnings("unused")
 		Window window = new GameWindow(WindowWidth, WindowHeight);
 		
 		glEnable(GL_BLEND);
@@ -52,8 +55,9 @@ public class Game1 extends Game implements GlobalSettings{
 
 	@Override
 	public void LoadContent() {
+		//Nieuwe conten loaden
 		field = new Field();
-		
+		Game.Components.add(field);
 	}
 
 }
