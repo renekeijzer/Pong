@@ -16,6 +16,7 @@ public class Field extends GameComponent {
 	private boolean cancheat;
 
 	public Field() {
+		//allemaal standaard warden
 		cancheat = true;
 		BallList = new ArrayList<Ball>();
 		RemoveBallList = new ArrayList<Ball>();
@@ -36,7 +37,7 @@ public class Field extends GameComponent {
 	@Override
 	public void Update() {
 		
-	switch(Game.state)
+	switch(Game.state) //game status code
 		{
 			case INTRO:
 				Player1.setPosition(new Vector2f(Player1.getPosition().x, BallList.get(0).getPosition().y - PlayerWidth/2));
@@ -44,7 +45,7 @@ public class Field extends GameComponent {
 				Player1.setManual(false);
 				Player2.setManual(false);
 				while (Keyboard.next()) {
-				    if (Keyboard.getEventKeyState()) {
+				    if (Keyboard.getEventKeyState()) {//als er op een toets wordt gedrukt dan naar GAME
 				    Game.state = State.GAME;
 				    Game.justStarted = true;
 				    	}
@@ -77,7 +78,7 @@ public class Field extends GameComponent {
 		
 		for (Ball ball : BallList) {
 			Vector2f tmpVel = ball.getVelocity();
-			if (ball.intersects(Player1)) {
+			if (ball.intersects(Player1)) { //collision verhaal over speler
 				ball.IncrementAllSpeed(0.006f);
 				ball.IncrementXSpeed(0.004f);
 
@@ -107,7 +108,7 @@ public class Field extends GameComponent {
 				ball.setColor(Ball.getRandomColor());
 				Sound.PlayBoop();
 			}
-			if (ball.intersects(Player2)) {
+			if (ball.intersects(Player2)) { //IDEM
 				ball.IncrementAllSpeed(0.006f);
 				ball.IncrementXSpeed(0.004f);
 				if ((ball.getPosition().y + ball.getHeight()) > (Player2
@@ -135,24 +136,24 @@ public class Field extends GameComponent {
 				ball.setColor(Ball.getRandomColor());
 				Sound.PlayBeep();
 			}
-			if (ball.getPosition().x > WindowWidth) {
+			if (ball.getPosition().x > WindowWidth) { //Goal, buiten scherm en in goal andere speler
 				Player1.incrementScore();
 				RemoveBallList.add(ball);
 				Game.Components.remove(ball);
 
-			} else if (ball.getPosition().x < 0) {
+			} else if (ball.getPosition().x < 0) { //IDEM
 				Player2.incrementScore();
 				RemoveBallList.add(ball);
 				Game.Components.remove(ball);
 			}
 		}
 
-		for (Ball ball : RemoveBallList) {
+		for (Ball ball : RemoveBallList) { //Verwijder ballen pas nadat de lijst is doorgelopen voor voorkomen van de error.
 			BallList.remove(ball);
 		}
 		RemoveBallList.clear();
 
-		if (BallList.size() == 0) {
+		if (BallList.size() == 0) { //spawn new ball
 			tmpball = new Ball(new Rectangle(new Vector2f(400, 200), 20, 20));
 			Game.Components.add(tmpball);
 			BallList.add(tmpball);
