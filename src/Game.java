@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 import Screens.State;
 
-public abstract class Game {
+public abstract class Game implements GlobalSettings{
 	
 	static State state = State.INTRO;
 	static boolean justStarted = false;

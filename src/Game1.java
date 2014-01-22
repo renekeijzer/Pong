@@ -6,10 +6,8 @@ import Screens.GameWindow;
 import Screens.Window;
 
 
-public class Game1 extends Game implements GlobalSettings{
+public class Game1 extends Game {
 	private Field field;
-	public Player Player1, Player2;
-	public Ball ball;
 	public Game1()
 	{
 		do
